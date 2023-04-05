@@ -1,27 +1,17 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import { useData } from './hooks/ApiData.js'
+import { useState } from 'react'
 
 function App() {
-
-  const [ mhwData, setMhwData ] = useState()
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await axios.get('https://mhw-db.com/monsters')
-        setMhwData(data)
-        console.log({ mhwData })
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getData()
-  }, [])
+  const [ loaded, setLoaded ] = useState(false)
+  const result = useData({ loaded, setLoaded })
   
 
   return (
-    <h1>bottom text</h1>
+    <main>
+      <p>bottom text</p>
+    </main>
   );
 }
+
 
 export default App;
